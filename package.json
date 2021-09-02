@@ -73,9 +73,7 @@
     "docs": "jsdoc -c jsdoc.js",
     "release": "semantic-release"
   },
-  "dependencies": {
-    "falsey": "1.0.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "handlebars": "4.x",
     "moment": "2.x"
