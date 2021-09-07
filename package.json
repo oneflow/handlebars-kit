@@ -54,7 +54,13 @@
     "Tim Douglas (https://github.com/timdouglas)",
     "(https://github.com/homersimpsons)"
   ],
-  "repository": "Oneflow/handlebars-kit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oneflow/handlebars-kit"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "bugs": {
     "url": "https://github.com/Oneflow/handlebars-kit/issues"
   },
