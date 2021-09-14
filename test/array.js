@@ -6,7 +6,7 @@ helpers.string({ handlebars: hbs });
 helpers.array({ handlebars: hbs });
 helpers.math({ handlebars: hbs });
 
-const context = { array: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], duplicate: [ 'a', 'b', 'b', 'c', 'd', 'b', 'f', 'a', 'g'] };
+const context = { str: 'abcdefgh', array: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], duplicate: [ 'a', 'b', 'b', 'c', 'd', 'b', 'f', 'a', 'g'] };
 
 describe('array', function() {
   describe('after', function() {
@@ -17,6 +17,11 @@ describe('array', function() {
     it('should return all of the items in an array after the given index', function() {
       const fn = hbs.compile('{{after array 5}}');
       assert.equal(fn(context), 'f,g,h');
+    });
+
+    it('should return all of the items in a string after the given index', function() {
+      const fn = hbs.compile('{{after str 5}}');
+      assert.equal(fn(context), 'fgh');
     });
 
     it('should return all of the items in an array after the specified count', function() {
@@ -39,6 +44,11 @@ describe('array', function() {
     it('should return all of the items in an array before the given index', function() {
       const fn = hbs.compile('{{before array 3}}');
       assert.equal(fn(context), 'a,b,c');
+    });
+
+    it('should return all of the items in a string before the given index', function() {
+      const fn = hbs.compile('{{before str 3}}');
+      assert.equal(fn(context), 'abc');
     });
 
     it('should return all of the items in an array before the specified count', function() {
@@ -84,6 +94,11 @@ describe('array', function() {
     it('should return an array with the first two items in an array', function() {
       const fn = hbs.compile('{{first foo 2}}');
       assert.equal(fn({foo: ['a', 'b', 'c']}), 'a,b');
+    });
+
+    it('should return an string with the first two items in a string', function() {
+      const fn = hbs.compile('{{first foo 2}}');
+      assert.equal(fn({foo: 'abcde' }), 'ab');
     });
   });
 

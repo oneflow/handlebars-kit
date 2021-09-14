@@ -79,7 +79,9 @@
     "docs": "jsdoc -c jsdoc.js",
     "release": "semantic-release"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "4.17.21"
+  },
   "peerDependencies": {
     "handlebars": "4.x",
     "moment": "2.x"
