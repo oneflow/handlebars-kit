@@ -134,6 +134,43 @@ describe('array', function() {
     });
   });
 
+  describe('forEach', function() {
+    it('should iterate over an array, exposing objects as context', function() {
+      const arr = [{name: 'a'}, {name: 'b'}, {name: 'c'}];
+
+      const fn = hbs.compile('{{#forEach arr}}{{name}}{{/forEach}}');
+      assert.equal(fn({arr: arr}), 'abc');
+    });
+
+    it('should expose `index`', function() {
+      const arr = [{name: 'a'}, {name: 'b'}, {name: 'c'}];
+
+      const fn = hbs.compile('{{#forEach arr}}{{index}}{{/forEach}}');
+      assert.equal(fn({arr: arr}), '123');
+    });
+
+    it('should expose `total`', function() {
+      const arr = [{name: 'a'}, {name: 'b'}, {name: 'c'}];
+
+      const fn = hbs.compile('{{#forEach arr}}{{total}}{{/forEach}}');
+      assert.equal(fn({arr: arr}), '333');
+    });
+
+    it('should expose `isFirst`', function() {
+      const arr = [{name: 'a'}, {name: 'b'}, {name: 'c'}];
+
+      const fn = hbs.compile('{{#forEach arr}}{{isFirst}}{{/forEach}}');
+      assert.equal(fn({arr: arr}), 'truefalsefalse');
+    });
+
+    it('should expose `isLast`', function() {
+      const arr = [{name: 'a'}, {name: 'b'}, {name: 'c'}];
+
+      const fn = hbs.compile('{{#forEach arr}}{{isLast}}{{/forEach}}');
+      assert.equal(fn({arr: arr}), 'falsefalsetrue');
+    });
+  });
+
   describe('inArray', function() {
     it('should render the first block when a value exists in the array', function() {
       const fn = hbs.compile('{{#inArray array "d"}}AAA{{else}}BBB{{/inArray}}');
