@@ -21,6 +21,33 @@ describe('object', function() {
     });
   });
 
+  describe('forOwn', function() {
+    it('should iterate over each property in an object:', function() {
+      const fn = hbs.compile('{{#forOwn this}} {{@key}} {{.}} {{/forOwn}}');
+      assert.equal(fn(context.object), ' a b  c d  e f ');
+    });
+
+    it('should return the inverse block if no object is passed:', function() {
+      const fn = hbs.compile('{{#forOwn}} {{.}} {{else}} Nada. {{/forOwn}}');
+      assert.equal(fn(context.object), ' Nada. ');
+    });
+
+    it('should only expose "own" keys:', function() {
+      function Foo() {
+        this.a = 'b';
+        this.b = 'c';
+      }
+      Foo.prototype.c = 'd';
+      const fn = hbs.compile('{{#forOwn this}} {{.}} {{/forOwn}}');
+      assert.equal(fn(new Foo()), ' b  c ');
+    });
+
+    it('should expose private variables:', function() {
+      const fn = hbs.compile('{{#forOwn this abc=object}} {{@abc.c}} {{/forOwn}}');
+      assert.equal(fn(context), ' d ');
+    });
+  });
+
   describe('getObject', function() {
     it('should get an object from the context', function() {
       const one = hbs.compile('{{{stringify (getObject "a" this)}}}')({a: 'b'});
