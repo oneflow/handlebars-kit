@@ -142,6 +142,18 @@ describe('array', function() {
       assert.equal(fn({arr: arr}), 'abc');
     });
 
+    it('should throw an error when options is not an object', function() {
+      let error = {};
+
+      try {
+        hbs.compile('{{#forEach}}{{/forEach}}')(context.array);
+      } catch (err) {
+        error = err;
+      }
+
+      assert.equal(error.message, 'forEach expects options to be an object');
+    });
+
     it('should expose `index`', function() {
       const arr = [{name: 'a'}, {name: 'b'}, {name: 'c'}];
 
