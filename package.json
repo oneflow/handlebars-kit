@@ -1,5 +1,5 @@
 {
-  "name": "@oneflow/handlebars-kit",
+  "name": "handlebars-kit",
   "description": "More than 130 Handlebars helpers in ~20 categories.",
   "version": "0.0.0",
   "homepage": "https://github.com/Oneflow/handlebars-kit",
@@ -54,10 +54,7 @@
     "Tim Douglas (https://github.com/timdouglas)",
     "(https://github.com/homersimpsons)"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/oneflow/handlebars-kit"
-  },
+  "repository": "Oneflow/handlebars-kit",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
