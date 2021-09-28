@@ -84,11 +84,11 @@
     "docdash": "^1.1.0",
     "eslint": "5.16.0",
     "handlebars": "4.1.2",
-    "jest": "24.6.0",
-    "jsdoc": "3.6.1",
+    "jest": "27.2.3",
+    "jsdoc": "3.6.7",
     "mockdate": "2.0.2",
     "moment": "2.24.0",
-    "semantic-release": "15.13.12"
+    "semantic-release": "18.0.0"
   },
   "keywords": [
     "array",
