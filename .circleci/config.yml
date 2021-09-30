@@ -1,47 +1,69 @@
 version: 2.1
 
-orbs:
-  queue: eddiewebb/queue@volatile
-
-workflows:
-  build_and_publish:
-    jobs:
-      - queue/block_workflow:
-          context: oneflow
-          only-on-branch: master
-          time: "10" # minutes max wait
-      - build:
-          context: oneflow
-          requires:
-            - queue/block_workflow
-
 jobs:
-  build:
+  checkout_and_test:
+    parameters:
+      node-version:
+        type: string
     docker:
-      - image: circleci/node:10-stretch
+      - image: cimg/node:<< parameters.node-version >>
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v2-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-            - v2-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}
-            - v2-npm-deps-{{ .Branch }}
-            - v2-npm-deps-
+#      - restore_cache:
+#          keys:
+#            - v2-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+#            - v2-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}
+#            - v2-npm-deps-{{ .Branch }}
+#            - v2-npm-deps-
       - run:
           name: install NPM dependencies
-          command: |
-            echo -e "//registry.npmjs.org/:_authToken=$NPM_TOKEN\nscope=@oneflow" > .npmrc
-            npm install
-      - save_cache:
-          key: v2-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
+          command: npm install
+#      - save_cache:
+#          key: v2-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+#          paths:
+#            - node_modules
       - run:
           name: test
           command: npm run cover
+      - when:
+          condition:
+            equal: [ "16.10", << parameters.node-version >> ]
+          steps:
+            - run:
+                name: upload coverage report
+                command: npx codecov
+            - save_cache:
+                key: v1-source-{{ .Environment.CIRCLE_SHA1 }}
+                paths:
+                  - "~"
+  publish:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - restore_cache:
+          key: v1-source-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys
       - run:
-          name: upload coverage report
-          command: bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
+          name: Add github to known_hosts
+          command: |
+            mkdir -p ~/.ssh
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
       - run:
           name: do a release
           command: npx semantic-release
+
+workflows:
+  version: 2
+  build_and_publish:
+    jobs:
+      - checkout_and_test:
+          matrix:
+            parameters:
+              node-version: ["12.22", "14.18", "16.10"]
+      - publish:
+          requires:
+            - checkout_and_test
+          filters:
+            branches:
+              only:
+                - master
