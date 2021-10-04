@@ -1,14 +1,12 @@
-# NOTE: WIP FORK
+# Handlebars Kit
 
-This is a fork of the [handlebars-kit](https://github.com/helpers/handlebars-helpers) created by [Jon Schlinkert](https://github.com/jonschlinkert).
+This is a fork of the [handlebars-helpers](https://github.com/helpers/handlebars-helpers) created by [Jon Schlinkert](https://github.com/jonschlinkert).
 
-- The fork minimises dependencies to reduce the maintenance effort
-- The fork removes risky helpers, such as any that interact with the file system
-- The fork is published to NPM https://www.npmjs.com/package/handlebars-kit
-- The fork has higher test coverage
+Motivations for forking
+- To minimise the number of dependencies, reducing the maintenance effort
+- To remove potentially risky helpers (such as any that interact with the file system)
+- To increase the number of test cases and resulting test coverage
 
-
-> More than 130 Handlebars helpers in ~20 categories. Helpers can be used with Assemble, Generate, Verb, Ghost, gulp-handlebars, grunt-handlebars, consolidate, or any node.js/Handlebars project.
 
 You might also be interested in [template-helpers](https://github.com/jonschlinkert/template-helpers).
 
@@ -41,7 +39,7 @@ The main export returns a function that needs to be called to expose the object 
 **Get all helpers**
 
 ```js
-var helpers = require('handlebars-kit')();
+const helpers = require('handlebars-kit')();
 //=> returns object with all (130+) helpers
 ```
 
@@ -50,12 +48,12 @@ var helpers = require('handlebars-kit')();
 Helper collections are exposed as getters, so only the helpers you want will be required and loaded.
 
 ```js
-var helpers = require('handlebars-kit');
-var math = helpers.math();
+const helpers = require('handlebars-kit');
+const math = helpers.math();
 //=> only the `math` helpers
 
-var helpers = require('handlebars-kit');
-var array = helpers.array();
+const helpers = require('handlebars-kit');
+const array = helpers.array();
 //=> only the `collections` helpers
 ```
 
@@ -64,20 +62,20 @@ var array = helpers.array();
 Helper collections are exposed as getters, so only the helpers you want will be required and loaded.
 
 ```js
-var helpers = require('handlebars-kit')(['math', 'string']);
+const helpers = require('handlebars-kit')(['math', 'string']);
 //=> only the `math` and `string` helpers
 ```
 
 **Optionally pass your own handlebars**
 
 ```js
-var handlebars = require('handlebars');
-var helpers = require('handlebars-kit')({
+const handlebars = require('handlebars');
+const helpers = require('handlebars-kit')({
   handlebars: handlebars
 });
 
 // or for a specific collection
-var math = helpers.math({
+const math = helpers.math({
   handlebars: handlebars
 });
 ```
@@ -86,18 +84,13 @@ var math = helpers.math({
 
 ## Categories
 
-Currently **189 helpers** in **20 categories**:
-
 * **[array](#array)** ([code](lib/array.js) | [unit tests](test/array.js))
-* **[code](#code)** ([code](lib/code.js) | [unit tests](test/code.js))
 * **[collection](#collection)** ([code](lib/collection.js) | [unit tests](test/collection.js))
 * **[comparison](#comparison)** ([code](lib/comparison.js) | [unit tests](test/comparison.js))
 * **[date](#date)** ([code](lib/date.js) | [unit tests](test/date.js))
-* **[fs](#fs)** ([code](lib/fs.js) | [unit tests](test/fs.js))
 * **[html](#html)** ([code](lib/html.js) | [unit tests](test/html.js))
 * **[i18n](#i18n)** ([code](lib/i18n.js) | [unit tests](test/i18n.js))
 * **[inflection](#inflection)** ([code](lib/inflection.js) | [unit tests](test/inflection.js))
-* **[logging](#logging)** ([code](lib/logging.js) | [unit tests](test/logging.js))
 * **[math](#math)** ([code](lib/math.js) | [unit tests](test/math.js))
 * **[misc](#misc)** ([code](lib/misc.js) | [unit tests](test/misc.js))
 * **[number](#number)** ([code](lib/number.js) | [unit tests](test/number.js))
@@ -113,264 +106,241 @@ Currently **189 helpers** in **20 categories**:
 
 Visit the: [code](lib/array.js) | [unit tests](test/array.js)
 
-* **[after](#after)** ([code](lib/array.js#L22) | [tests](test/array.js#L13))
-* **[arrayify](#arrayify)** ([code](lib/array.js#L39) | [tests](test/array.js#L29))
-* **[before](#before)** ([code](lib/array.js#L58) | [tests](test/array.js#L36))
-* **[eachIndex](#eachIndex)** ([code](lib/array.js#L77) | [tests](test/array.js#L58))
-* **[filter](#filter)** ([code](lib/array.js#L102) | [tests](test/array.js#L91))
-* **[first](#first)** ([code](lib/array.js#L142) | [tests](test/array.js#L65))
-* **[forEach](#forEach)** ([code](lib/array.js#L184) | [tests](test/array.js#L123))
-* **[inArray](#inArray)** ([code](lib/array.js#L224) | [tests](test/array.js#L160))
-* **[isArray](#isArray)** ([code](lib/array.js#L244) | [tests](test/array.js#L172))
-* **[itemAt](#itemAt)** ([code](lib/array.js#L263) | [tests](test/array.js#L182))
-* **[join](#join)** ([code](lib/array.js#L294) | [tests](test/array.js#L225))
-* **[equalsLength](#equalsLength)** ([code](lib/array.js#L313) | [no tests])
-* **[last](#last)** ([code](lib/array.js#L349) | [tests](test/array.js#L240))
-* **[length](#length)** ([code](lib/array.js#L379) | [tests](test/array.js#L254))
-* **[lengthEqual](#lengthEqual)** ([code](lib/array.js#L395) | [tests](test/array.js#L254))
-* **[map](#map)** ([code](lib/array.js#L414) | [tests](test/array.js#L266))
-* **[pluck](#pluck)** ([code](lib/array.js#L445) | [tests](test/array.js#L300))
-* **[reverse](#reverse)** ([code](lib/array.js#L473) | [no tests])
-* **[some](#some)** ([code](lib/array.js#L504) | [tests](test/array.js#L308))
-* **[sort](#sort)** ([code](lib/array.js#L532) | [tests](test/array.js#L333))
-* **[sortBy](#sortBy)** ([code](lib/array.js#L557) | [tests](test/array.js#L358))
-* **[withAfter](#withAfter)** ([code](lib/array.js#L588) | [tests](test/array.js#L390))
-* **[withBefore](#withBefore)** ([code](lib/array.js#L618) | [tests](test/array.js#L397))
-* **[withFirst](#withFirst)** ([code](lib/array.js#L648) | [tests](test/array.js#L404))
-* **[withGroup](#withGroup)** ([code](lib/array.js#L692) | [tests](test/array.js#L418))
-* **[withLast](#withLast)** ([code](lib/array.js#L727) | [tests](test/array.js#L428))
-* **[withSort](#withSort)** ([code](lib/array.js#L766) | [tests](test/array.js#L442))
-* **[unique](#unique)** ([code](lib/array.js#L816) | [tests](test/array.js#L483))
-
-### [code helpers](#code)
-
-Visit the: [code](lib/code.js) | [unit tests](test/code.js)
-
-* **[embed](#embed)** ([code](lib/code.js#L23) | [tests](test/code.js#L10))
-* **[gist](#gist)** ([code](lib/code.js#L45) | [tests](test/code.js#L62))
-* **[jsfiddle](#jsfiddle)** ([code](lib/code.js#L60) | [tests](test/code.js#L69))
+* **[after](#after)** ([code](lib/array.js#L25) | [tests](test/array.js#L12))
+* **[arrayify](#arrayify)** ([code](lib/array.js#L43) | [tests](test/array.js#L33))
+* **[before](#before)** ([code](lib/array.js#L60) | [tests](test/array.js#L40))
+* **[eachIndex](#eachIndex)** ([code](lib/array.js#L137) | [tests](test/array.js#L67))
+* **[filter](#filter)** ([code](lib/array.js#L162) | [tests](test/array.js#L105))
+* **[first](#first)** ([code](lib/array.js#L202) | [tests](test/array.js#L74))
+* **[forEach](#forEach)** ([code](lib/array.js#L99) | [tests](test/array.js#L137))
+* **[inArray](#inArray)** ([code](lib/array.js#L233) | [tests](test/array.js#L186))
+* **[isArray](#isArray)** ([code](lib/array.js#L254) | [tests](test/array.js#L198))
+* **[itemAt](#itemAt)** ([code](lib/array.js#L273) | [tests](test/array.js#L208))
+* **[join](#join)** ([code](lib/array.js#L304) | [tests](test/array.js#L251))
+* **[equalsLength](#equalsLength)** ([code](lib/array.js#L323) | [no tests])
+* **[last](#last)** ([code](lib/array.js#L359) | [tests](test/array.js#L266))
+* **[length](#length)** ([code](lib/array.js#L389) | [tests](test/collection.js#L65))
+* **[lengthEqual](#lengthEqual)** ([code](lib/array.js#L405) | [tests](test/array.js#L280))
+* **[map](#map)** ([code](lib/array.js#L424) | [tests](test/array.js#L292))
+* **[pluck](#pluck)** ([code](lib/array.js#L455) | [tests](test/array.js#L326))
+* **[reverse](#reverse)** ([code](lib/array.js#L476) | [tests](test/array.js#L334))
+* **[some](#some)** ([code](lib/array.js#L507) | [tests](test/array.js#L360))
+* **[sort](#sort)** ([code](lib/array.js#L535) | [tests](test/array.js#L385))
+* **[sortBy](#sortBy)** ([code](lib/array.js#L560) | [tests](test/array.js#L410))
+* **[withAfter](#withAfter)** ([code](lib/array.js#L586) | [tests](test/array.js#L441))
+* **[withBefore](#withBefore)** ([code](lib/array.js#L616) | [tests](test/array.js#L448))
+* **[withFirst](#withFirst)** ([code](lib/array.js#L646) | [tests](test/array.js#L455))
+* **[withGroup](#withGroup)** ([code](lib/array.js#L690) | [tests](test/array.js#L469))
+* **[withLast](#withLast)** ([code](lib/array.js#L725) | [tests](test/array.js#L479))
+* **[withSort](#withSort)** ([code](lib/array.js#L764) | [tests](test/array.js#L493))
+* **[unique](#unique)** ([code](lib/array.js#L814) | [tests](test/array.js#L534))
 
 ### [collection helpers](#collection)
 
 Visit the: [code](lib/collection.js) | [unit tests](test/collection.js)
 
-* **[isEmpty](#isEmpty)** ([code](lib/collection.js#L31) | [tests](test/collection.js#L14))
+* **[isEmpty](#isEmpty)** ([code](lib/collection.js#L28) | [tests](test/collection.js#L11))
 
 ### [comparison helpers](#comparison)
 
 Visit the: [code](lib/comparison.js) | [unit tests](test/comparison.js)
 
-* **[and](#and)** ([code](lib/comparison.js#L27) | [tests](test/comparison.js#L10))
-* **[compare](#compare)** ([code](lib/comparison.js#L57) | [tests](test/comparison.js#L41))
-* **[contains](#contains)** ([code](lib/comparison.js#L124) | [tests](test/comparison.js#L167))
-* **[default](#default)** ([code](lib/comparison.js#L143) | [tests](test/comparison.js#L204))
-* **[eq](#eq)** ([code](lib/comparison.js#L165) | [tests](test/comparison.js#L351))
-* **[gt](#gt)** ([code](lib/comparison.js#L188) | [tests](test/comparison.js#L214))
-* **[gte](#gte)** ([code](lib/comparison.js#L212) | [tests](test/comparison.js#L245))
-* **[has](#has)** ([code](lib/comparison.js#L232) | [tests](test/comparison.js#L260))
-* **[isFalsey](#isFalsey)** ([code](lib/comparison.js#L274) | [tests](test/comparison.js#L327))
-* **[isTruthy](#isTruthy)** ([code](lib/comparison.js#L289) | [tests](test/comparison.js#L339))
-* **[ifEven](#ifEven)** ([code](lib/comparison.js#L310) | [tests](test/comparison.js#L368))
-* **[ifNth](#ifNth)** ([code](lib/comparison.js#L327) | [tests](test/comparison.js#L380))
-* **[ifOdd](#ifOdd)** ([code](lib/comparison.js#L350) | [tests](test/comparison.js#L403))
-* **[is](#is)** ([code](lib/comparison.js#L274) | [tests](test/comparison.js#L327))
-* **[isnt](#isnt)** ([code](lib/comparison.js#L389) | [tests](test/comparison.js#L432))
-* **[lt](#lt)** ([code](lib/comparison.js#L411) | [tests](test/comparison.js#L449))
-* **[lte](#lte)** ([code](lib/comparison.js#L435) | [tests](test/comparison.js#L476))
-* **[neither](#neither)** ([code](lib/comparison.js#L456) | [tests](test/comparison.js#L511))
+* **[and](#and)** ([code](lib/comparison.js#L26) | [tests](test/comparison.js#L7))
+* **[compare](#compare)** ([code](lib/comparison.js#L56) | [tests](test/comparison.js#L38))
+* **[contains](#contains)** ([code](lib/comparison.js#L123) | [tests](test/comparison.js#L164))
+* **[default](#default)** ([code](lib/comparison.js#L142) | [tests](test/comparison.js#L201))
+* **[eq](#eq)** ([code](lib/comparison.js#L164) | [tests](test/comparison.js#L348))
+* **[gt](#gt)** ([code](lib/comparison.js#L187) | [tests](test/comparison.js#L211))
+* **[gte](#gte)** ([code](lib/comparison.js#L211) | [tests](test/comparison.js#L242))
+* **[has](#has)** ([code](lib/comparison.js#L231) | [tests](test/comparison.js#L273))
+* **[isFalsey](#isFalsey)** ([code](lib/comparison.js#L271) | [tests](test/comparison.js#L324))
+* **[isTruthy](#isTruthy)** ([code](lib/comparison.js#L284) | [tests](test/comparison.js#L336))
+* **[ifEven](#ifEven)** ([code](lib/comparison.js#L305) | [tests](test/comparison.js#L365))
+* **[ifNth](#ifNth)** ([code](lib/comparison.js#L323) | [tests](test/comparison.js#L377))
+* **[ifOdd](#ifOdd)** ([code](lib/comparison.js#L346) | [tests](test/comparison.js#L400))
+* **[is](#is)** ([code](lib/comparison.js#L364) | [tests](test/comparison.js#L412))
+* **[isnt](#isnt)** ([code](lib/comparison.js#L386) | [tests](test/comparison.js#L429))
+* **[lt](#lt)** ([code](lib/comparison.js#L408) | [tests](test/comparison.js#L446))
+* **[lte](#lte)** ([code](lib/comparison.js#L432) | [tests](test/comparison.js#L473))
+* **[neither](#neither)** ([code](lib/comparison.js#L456) | [tests](test/comparison.js#L508))
 * **[not](#not)** ([code](lib/comparison.js#L470) | [no tests])
-* **[or](#or)** ([code](lib/comparison.js#L492) | [tests](test/comparison.js#L523))
-* **[unlessEq](#unlessEq)** ([code](lib/comparison.js#L518) | [tests](test/comparison.js#L556))
-* **[unlessGt](#unlessGt)** ([code](lib/comparison.js#L538) | [tests](test/comparison.js#L567))
-* **[unlessLt](#unlessLt)** ([code](lib/comparison.js#L558) | [tests](test/comparison.js#L578))
-* **[unlessGteq](#unlessGteq)** ([code](lib/comparison.js#L578) | [tests](test/comparison.js#L589))
-* **[unlessLteq](#unlessLteq)** ([code](lib/comparison.js#L598) | [tests](test/comparison.js#L604))
+* **[or](#or)** ([code](lib/comparison.js#L489) | [tests](test/comparison.js#L523))
+* **[unlessEq](#unlessEq)** ([code](lib/comparison.js#L515) | [tests](test/comparison.js#L553))
+* **[unlessGt](#unlessGt)** ([code](lib/comparison.js#L535) | [tests](test/comparison.js#L564))
+* **[unlessLt](#unlessLt)** ([code](lib/comparison.js#L555) | [tests](test/comparison.js#L578))
+* **[unlessGteq](#unlessGteq)** ([code](lib/comparison.js#L575) | [tests](test/comparison.js#L586))
+* **[unlessLteq](#unlessLteq)** ([code](lib/comparison.js#L595) | [tests](test/comparison.js#L601))
 
 ### [date helpers](#date)
 
 Visit the: [code](lib/date.js) | [unit tests](test/date.js)
 
-* **[year](#year)** ([code](lib/date.js#L15) | [no tests])
-* **[date](#date)** ([code](lib/date.js#Lundefined) | [no tests])
-* **[moment](#moment)** ([code](lib/date.js#L24) | [no tests])
+* **[year](#year)** ([code](lib/date.js#L24) | [tests](test/date.js#L11))
+* **[date](#date)** ([code](lib/date.js#L88) | [tests](test/date.js#L33))
+* **[moment](#moment)** ([code](lib/date.js#L55) | [no tests])
+* **[formatDate](#formatDate)** ([code](lib/date.js#L103) | [tests](test/date.js#L65))
+* **[niceDate](#niceDate)** ([code](lib/date.js#L119) | [tests](test/date.js#L80))
+* **[getTime](#getTime)** ([code](lib/date.js#L133) | [tests](test/date.js#L91))
 
-### [fs helpers](#fs)
 
-Visit the: [code](lib/fs.js) | [unit tests](test/fs.js)
-
-* **[fileSize](#fileSize)** ([code](lib/fs.js#L14) | [no tests])
 
 ### [html helpers](#html)
 
 Visit the: [code](lib/html.js) | [unit tests](test/html.js)
 
-* **[attr](#attr)** ([code](lib/html.js#L23) | [tests](test/html.js#L13))
-* **[css](#css)** ([code](lib/html.js#L45) | [tests](test/html.js#L21))
-* **[js](#js)** ([code](lib/html.js#L89) | [tests](test/html.js#L69))
-* **[ul](#ul)** ([code](lib/html.js#L135) | [tests](test/html.js#L108))
-* **[ol](#ol)** ([code](lib/html.js#L154) | [tests](test/html.js#L115))
-* **[thumbnailImage](#thumbnailImage)** ([code](lib/html.js#L176) | [tests](test/html.js#L122))
+* **[attr](#attr)** ([code](lib/html.js#L35) | [tests](test/html.js#L10))
+* **[css](#css)** ([code](lib/html.js#L57) | [tests](test/html.js#L18))
+* **[ul](#ul)** ([code](lib/html.js#L99) | [tests](test/html.js#L66))
+* **[ol](#ol)** ([code](lib/html.js#L118) | [tests](test/html.js#L73))
+* **[thumbnailImage](#thumbnailImage)** ([code](lib/html.js#L140) | [tests](test/html.js#L80))
 
 ### [i18n helpers](#i18n)
 
 Visit the: [code](lib/i18n.js) | [unit tests](test/i18n.js)
 
-* **[i18n](#i18n)** ([code](lib/i18n.js#L18) | [tests](test/i18n.js#L11))
+* **[i18n](#i18n)** ([code](lib/i18n.js#L18) | [tests](test/i18n.js#L8))
 
 ### [inflection helpers](#inflection)
 
 Visit the: [code](lib/inflection.js) | [unit tests](test/inflection.js)
 
-* **[inflect](#inflect)** ([code](lib/inflection.js#L30) | [tests](test/inflection.js#L9))
-* **[ordinalize](#ordinalize)** ([code](lib/inflection.js#L58) | [tests](test/inflection.js#L22))
-
-### [logging helpers](#logging)
-
-Visit the: [code](lib/logging.js) | [unit tests](test/logging.js)
-
-* **[log](#log)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[ok](#ok)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[success](#success)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[info](#info)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[warning](#warning)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[warn](#warn)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[error](#error)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[danger](#danger)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[bold](#bold)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[_debug](#_debug)** ([code](lib/logging.js#Lundefined) | [no tests])
-* **[_inspect](#_inspect)** ([code](lib/logging.js#Lundefined) | [no tests])
+* **[inflect](#inflect)** ([code](lib/inflection.js#L30) | [tests](test/inflection.js#L7))
+* **[ordinalize](#ordinalize)** ([code](lib/inflection.js#L58) | [tests](test/inflection.js#L19))
 
 ### [math helpers](#math)
 
 Visit the: [code](lib/math.js) | [unit tests](test/math.js)
 
-* **[abs](#abs)** ([code](lib/math.js#L15) | [no tests])
-* **[add](#add)** ([code](lib/math.js#L31) | [tests](test/math.js#L10))
-* **[avg](#avg)** ([code](lib/math.js#L54) | [no tests])
-* **[ceil](#ceil)** ([code](lib/math.js#L69) | [tests](test/math.js#L29))
-* **[divide](#divide)** ([code](lib/math.js#L84) | [tests](test/math.js#L36))
-* **[floor](#floor)** ([code](lib/math.js#L102) | [tests](test/math.js#L43))
-* **[minus](#minus)** ([code](lib/math.js#L118) | [no tests])
-* **[modulo](#modulo)** ([code](lib/math.js#L137) | [no tests])
-* **[multiply](#multiply)** ([code](lib/math.js#L157) | [tests](test/math.js#L50))
-* **[plus](#plus)** ([code](lib/math.js#L175) | [no tests])
-* **[random](#random)** ([code](lib/math.js#L194) | [tests](test/math.js#L102))
-* **[remainder](#remainder)** ([code](lib/math.js#L212) | [tests](test/math.js#L57))
-* **[round](#round)** ([code](lib/math.js#L224) | [tests](test/math.js#L69))
-* **[subtract](#subtract)** ([code](lib/math.js#L241) | [tests](test/math.js#L76))
-* **[sum](#sum)** ([code](lib/math.js#L263) | [tests](test/math.js#L83))
-* **[times](#times)** ([code](lib/math.js#L286) | [no tests])
+* **[abs](#abs)** ([code](lib/math.js#L28) | [tests](test/math.js#L7))
+* **[add](#add)** ([code](lib/math.js#L44) | [tests](test/math.js#L22))
+* **[avg](#avg)** ([code](lib/math.js#L61) | [no tests])
+* **[ceil](#ceil)** ([code](lib/math.js#L76) | [tests](test/math.js#L46))
+* **[divide](#divide)** ([code](lib/math.js#L92) | [tests](test/math.js#L61))
+* **[floor](#floor)** ([code](lib/math.js#L104) | [tests](test/math.js#L83))
+* **[minus](#minus)** ([code](lib/math.js#L121) | [tests](test/math.js#L95))
+* **[modulo](#modulo)** ([code](lib/math.js#L134) | [tests](test/math.js#L117))
+* **[multiply](#multiply)** ([code](lib/math.js#L148) | [tests](test/math.js#L129))
+* **[plus](#plus)** ([code](lib/math.js#L160) | [tests](test/math.js#L141))
+* **[random](#random)** ([code](lib/math.js#L171) | [tests](test/math.js#L153))
+* **[remainder](#remainder)** ([code](lib/math.js#L183) | [tests](test/math.js#L171))
+* **[round](#round)** ([code](lib/math.js#L193) | [tests](test/math.js#L188))
+* **[subtract](#subtract)** ([code](lib/math.js#L211) | [tests](test/math.js#L205))
+* **[sum](#sum)** ([code](lib/math.js#L225) | [tests](test/math.js#L212))
+* **[times](#times)** ([code](lib/math.js#L248) | [tests](test/math.js#L231))
 
 ### [misc helpers](#misc)
 
 Visit the: [code](lib/misc.js) | [unit tests](test/misc.js)
 
-* **[option](#option)** ([code](lib/misc.js#L26) | [tests](test/misc.js#L20))
-* **[noop](#noop)** ([code](lib/misc.js#L39) | [tests](test/misc.js#L13))
-* **[typeOf](#typeOf)** ([code](lib/misc.js#L59) | [no tests])
+* **[option](#option)** ([code](lib/misc.js#L21) | [tests](test/misc.js#L17))
+* **[noop](#noop)** ([code](lib/misc.js#L33) | [tests](test/misc.js#L10))
+* **[typeOf](#typeOf)** ([code](lib/misc.js#L52) | [tests](test/misc.js#L35))
+* **[md5](#md5)** ([code](lib/misc.js#L65) | [tests](test/misc.js#L46))
 
 ### [number helpers](#number)
 
 Visit the: [code](lib/number.js) | [unit tests](test/number.js)
 
-* **[bytes](#bytes)** ([code](lib/number.js#L24) | [tests](test/number.js#L10))
-* **[addCommas](#addCommas)** ([code](lib/number.js#L61) | [tests](test/number.js#L84))
-* **[phoneNumber](#phoneNumber)** ([code](lib/number.js#L74) | [tests](test/number.js#L30))
-* **[toAbbr](#toAbbr)** ([code](lib/number.js#L92) | [tests](test/number.js#L91))
-* **[toExponential](#toExponential)** ([code](lib/number.js#L130) | [tests](test/number.js#L59))
-* **[toFixed](#toFixed)** ([code](lib/number.js#L153) | [tests](test/number.js#L37))
-* **[toFloat](#toFloat)** ([code](lib/number.js#L169) | [tests](test/number.js#L77))
-* **[toInt](#toInt)** ([code](lib/number.js#L179) | [tests](test/number.js#L70))
-* **[toPrecision](#toPrecision)** ([code](lib/number.js#L196) | [tests](test/number.js#L48))
+* **[fileSize](#fileSize)** ([code](lib/number.js#L57) | [no tests])
+* **[bytes](#bytes)** ([code](lib/number.js#L24) | [tests](test/number.js#L7))
+* **[addCommas](#addCommas)** ([code](lib/number.js#L67) | [tests](test/number.js#L85))
+* **[phoneNumber](#phoneNumber)** ([code](lib/number.js#L80) | [tests](test/number.js#L31))
+* **[toAbbr](#toAbbr)** ([code](lib/number.js#L98) | [tests](test/number.js#L92))
+* **[toExponential](#toExponential)** ([code](lib/number.js#L136) | [tests](test/number.js#L60))
+* **[toFixed](#toFixed)** ([code](lib/number.js#L159) | [tests](test/number.js#L38))
+* **[toFloat](#toFloat)** ([code](lib/number.js#L175) | [tests](test/number.js#L78))
+* **[toInt](#toInt)** ([code](lib/number.js#L185) | [tests](test/number.js#L71))
+* **[toPrecision](#toPrecision)** ([code](lib/number.js#L202) | [tests](test/number.js#L49))
 
 ### [object helpers](#object)
 
 Visit the: [code](lib/object.js) | [unit tests](test/object.js)
 
-* **[extend](#extend)** ([code](lib/object.js#L18) | [tests](test/object.js#L15))
-* **[forOwn](#forOwn)** ([code](lib/object.js#L81) | [tests](test/object.js#L50))
-* **[toPath](#toPath)** ([code](lib/object.js#L106) | [tests](test/object.js#L87))
-* **[get](#get)** ([code](lib/object.js#L128) | [tests](test/object.js#L77))
-* **[getObject](#getObject)** ([code](lib/object.js#L149) | [tests](test/object.js#L77))
-* **[hasOwn](#hasOwn)** ([code](lib/object.js#L167) | [tests](test/object.js#L126))
-* **[isObject](#isObject)** ([code](lib/object.js#L183) | [tests](test/object.js#L144))
-* **[JSONparse](#JSONparse)** ([code](lib/object.js#L201) | [tests](test/object.js#L164))
-* **[JSONstringify](#JSONstringify)** ([code](lib/object.js#L218) | [no tests])
-* **[merge](#merge)** ([code](lib/object.js#L235) | [tests](test/object.js#L156))
-* **[parseJSON](#parseJSON)** ([code](lib/object.js#L254) | [no tests])
-* **[pick](#pick)** ([code](lib/object.js#L267) | [tests](test/object.js#L171))
-* **[stringify](#stringify)** ([code](lib/object.js#L290) | [tests](test/object.js#L199))
+* **[extend](#extend)** ([code](lib/object.js#L18) | [tests](test/object.js#L10))
+* **[forOwn](#forOwn)** ([code](lib/object.js#L55) | [tests](test/object.js#L24))
+* **[toPath](#toPath)** ([code](lib/object.js#L82) | [tests](test/object.js#L64))
+* **[get](#get)** ([code](lib/object.js#L103) | [tests](test/object.js#L78))
+* **[getObject](#getObject)** ([code](lib/object.js#L136) | [tests](test/object.js#L51))
+* **[hasOwn](#hasOwn)** ([code](lib/object.js#L157) | [tests](test/object.js#L110))
+* **[isObject](#isObject)** ([code](lib/object.js#L173) | [tests](test/object.js#L128))
+* **[JSONparse](#JSONparse)** ([code](lib/object.js#L191) | [tests](test/object.js#L148))
+* **[JSONstringify](#JSONstringify)** ([code](lib/object.js#L208) | [tests](test/object.js#L155))
+* **[merge](#merge)** ([code](lib/object.js#L242) | [tests](test/object.js#L140))
+* **[parseJSON](#parseJSON)** ([code](lib/object.js#L261) | [no tests])
+* **[pick](#pick)** ([code](lib/object.js#L274) | [tests](test/object.js#L169))
+* **[stringify](#stringify)** ([code](lib/object.js#L298) | [tests](test/object.js#L197))
 
 ### [path helpers](#path)
 
 Visit the: [code](lib/path.js) | [unit tests](test/path.js)
-* **[dirname](#dirname)** ([code](lib/path.js#L40) | [tests](test/path.js#L25))
-* **[basename](#basename)** ([code](lib/path.js#L81) | [tests](test/path.js#L47))
-* **[stem](#stem)** ([code](lib/path.js#L100) | [tests](test/path.js#L58))
-* **[extname](#extname)** ([code](lib/path.js#L119) | [tests](test/path.js#L69))
-* **[segments](#segments)** ([code](lib/path.js#L166) | [tests](test/path.js#L80))
+* **[dirname](#dirname)** ([code](lib/path.js#L19) | [tests](test/path.js#L8))
+* **[basename](#basename)** ([code](lib/path.js#L36) | [tests](test/path.js#L19))
+* **[stem](#stem)** ([code](lib/path.js#L53) | [tests](test/path.js#L34))
+* **[extname](#extname)** ([code](lib/path.js#L70) | [tests](test/path.js#L49))
+* **[segments](#segments)** ([code](lib/path.js#L94) | [tests](test/path.js#L64))
+* **[linkToUNC](#linkToUNC)** ([code](lib/path.js#L112) | [tests](test/path.js#L78))
 
 ### [regex helpers](#regex)
 
 Visit the: [code](lib/regex.js) | [unit tests](test/regex.js)
 
 * **[toRegex](#toRegex)** ([code](lib/regex.js#L19) | [no tests])
-* **[test](#test)** ([code](lib/regex.js#L42) | [no tests])
+* **[test](#test)** ([code](lib/regex.js#L42) | [tests](test/regex.js#L7))
 
 ### [string helpers](#string)
 
 Visit the: [code](lib/string.js) | [unit tests](test/string.js)
 
-* **[append](#append)** ([code](lib/string.js#L22) | [no tests])
-* **[camelcase](#camelcase)** ([code](lib/string.js#L41) | [tests](test/string.js#L10))
-* **[capitalize](#capitalize)** ([code](lib/string.js#L60) | [tests](test/string.js#L25))
-* **[capitalizeAll](#capitalizeAll)** ([code](lib/string.js#L77) | [tests](test/string.js#L36))
-* **[center](#center)** ([code](lib/string.js#L95) | [tests](test/string.js#L47))
-* **[chop](#chop)** ([code](lib/string.js#L125) | [tests](test/string.js#L58))
-* **[dashcase](#dashcase)** ([code](lib/string.js#L143) | [tests](test/string.js#L73))
-* **[dotcase](#dotcase)** ([code](lib/string.js#L162) | [tests](test/string.js#L88))
-* **[downcase](#downcase)** ([code](lib/string.js#L182) | [no tests])
-* **[ellipsis](#ellipsis)** ([code](lib/string.js#L202) | [tests](test/string.js#L103))
-* **[hyphenate](#hyphenate)** ([code](lib/string.js#L223) | [tests](test/string.js#L118))
-* **[isString](#isString)** ([code](lib/string.js#L240) | [tests](test/string.js#L129))
-* **[lowercase](#lowercase)** ([code](lib/string.js#L256) | [tests](test/string.js#L151))
-* **[occurrences](#occurrences)** ([code](lib/string.js#L278) | [tests](test/string.js#L162))
-* **[pascalcase](#pascalcase)** ([code](lib/string.js#L303) | [tests](test/string.js#L173))
-* **[pathcase](#pathcase)** ([code](lib/string.js#L323) | [tests](test/string.js#L188))
-* **[plusify](#plusify)** ([code](lib/string.js#L343) | [tests](test/string.js#L203))
-* **[prepend](#prepend)** ([code](lib/string.js#L363) | [no tests])
-* **[raw](#raw)** ([code](lib/string.js#L385) | [no tests])
-* **[remove](#remove)** ([code](lib/string.js#L413) | [no tests])
-* **[removeFirst](#removeFirst)** ([code](lib/string.js#L432) | [no tests])
-* **[replace](#replace)** ([code](lib/string.js#L452) | [tests](test/string.js#L222))
-* **[replaceFirst](#replaceFirst)** ([code](lib/string.js#L473) | [no tests])
-* **[reverse](#reverse)** ([code](lib/string.js#L492) | [tests](test/string.js#L241))
-* **[sentence](#sentence)** ([code](lib/string.js#L509) | [tests](test/string.js#L252))
-* **[snakecase](#snakecase)** ([code](lib/string.js#L528) | [tests](test/string.js#L263))
-* **[split](#split)** ([code](lib/string.js#L547) | [tests](test/string.js#L278))
-* **[startsWith](#startsWith)** ([code](lib/string.js#L572) | [tests](test/string.js#L293))
-* **[titleize](#titleize)** ([code](lib/string.js#L596) | [tests](test/string.js#L312))
-* **[trim](#trim)** ([code](lib/string.js#L623) | [tests](test/string.js#L323))
-* **[trimLeft](#trimLeft)** ([code](lib/string.js#L639) | [no tests])
-* **[trimRight](#trimRight)** ([code](lib/string.js#L657) | [no tests])
-* **[truncate](#truncate)** ([code](lib/string.js#L680) | [tests](test/string.js#L338))
-* **[truncateWords](#truncateWords)** ([code](lib/string.js#L712) | [no tests])
-* **[upcase](#upcase)** ([code](lib/string.js#L742) | [no tests])
-* **[uppercase](#uppercase)** ([code](lib/string.js#L763) | [tests](test/string.js#L362))
+* **[append](#append)** ([code](lib/string.js#L40) | [tests](test/string.js#L29))
+* **[camelcase](#camelcase)** ([code](lib/string.js#L59) | [tests](test/string.js#L41))
+* **[capitalize](#capitalize)** ([code](lib/string.js#L76) | [tests](test/string.js#L56))
+* **[capitalizeAll](#capitalizeAll)** ([code](lib/string.js#L93) | [tests](test/string.js#L67))
+* **[center](#center)** ([code](lib/string.js#L111) | [tests](test/string.js#L78))
+* **[chop](#chop)** ([code](lib/string.js#L141) | [tests](test/string.js#L89))
+* **[dashcase](#dashcase)** ([code](lib/string.js#L160) | [tests](test/string.js#L104))
+* **[dotcase](#dotcase)** ([code](lib/string.js#L177) | [tests](test/string.js#L119))
+* **[downcase](#downcase)** ([code](lib/string.js#L195) | [no tests])
+* **[ellipsis](#ellipsis)** ([code](lib/string.js#L213) | [tests](test/string.js#L138))
+* **[hyphenate](#hyphenate)** ([code](lib/string.js#L234) | [tests](test/string.js#L153))
+* **[isString](#isString)** ([code](lib/string.js#L251) | [tests](test/string.js#L164))
+* **[lowercase](#lowercase)** ([code](lib/string.js#L267) | [tests](test/string.js#L186))
+* **[occurrences](#occurrences)** ([code](lib/string.js#L289) | [tests](test/string.js#L197))
+* **[pascalcase](#pascalcase)** ([code](lib/string.js#L314) | [tests](test/string.js#L208))
+* **[pathcase](#pathcase)** ([code](lib/string.js#L332) | [tests](test/string.js#L223))
+* **[plusify](#plusify)** ([code](lib/string.js#L350) | [tests](test/string.js#L238))
+* **[prepend](#prepend)** ([code](lib/string.js#L370) | [tests](test/string.js#L257))
+* **[raw](#raw)** ([code](lib/string.js#L392) | [no tests])
+* **[remove](#remove)** ([code](lib/string.js#L420) | [tests](test/string.js#L275))
+* **[removeFirst](#removeFirst)** ([code](lib/string.js#L439) | [tests](test/string.js#L290))
+* **[replace](#replace)** ([code](lib/string.js#L459) | [tests](test/string.js#L305))
+* **[replaceFirst](#replaceFirst)** ([code](lib/string.js#L480) | [tests](test/string.js#L324))
+* **[reverse](#reverse)** ([code](lib/string.js#L499) | [tests](test/string.js#L343))
+* **[sentence](#sentence)** ([code](lib/string.js#L516) | [tests](test/string.js#L354))
+* **[snakecase](#snakecase)** ([code](lib/string.js#L535) | [tests](test/string.js#L365))
+* **[split](#split)** ([code](lib/string.js#L552) | [tests](test/string.js#L380))
+* **[startsWith](#startsWith)** ([code](lib/string.js#L577) | [tests](test/string.js#L395))
+* **[titleize](#titleize)** ([code](lib/string.js#L601) | [tests](test/string.js#L414))
+* **[trim](#trim)** ([code](lib/string.js#L628) | [tests](test/string.js#L425))
+* **[trimLeft](#trimLeft)** ([code](lib/string.js#L644) | [tests](test/string.js#L440))
+* **[trimRight](#trimRight)** ([code](lib/string.js#L657) | [tests](test/string.js#L455))
+* **[truncate](#truncate)** ([code](lib/string.js#L683) | [tests](test/string.js#L470))
+* **[truncateWords](#truncateWords)** ([code](lib/string.js#L717) | [tests](test/string.js#L497))
+* **[upcase](#upcase)** ([code](lib/string.js#L775) | [no tests])
+* **[uppercase](#uppercase)** ([code](lib/string.js#L754) | [tests](test/string.js#L524))
 
 ### [url helpers](#url)
 
 Visit the: [code](lib/url.js) | [unit tests](test/url.js)
 
-* **[encodeURI](#encodeURI)** ([code](lib/url.js#L19) | [tests](test/url.js#L31))
-* **[escape](#escape)** ([code](lib/url.js#L34) | [no tests])
-* **[decodeURI](#decodeURI)** ([code](lib/url.js#L48) | [tests](test/url.js#L38))
-* **[url_encode](#url_encode)** ([code](lib/url.js#L59) | [no tests])
-* **[url_decode](#url_decode)** ([code](lib/url.js#L68) | [no tests])
-* **[urlResolve](#urlResolve)** ([code](lib/url.js#L82) | [tests](test/url.js#L11))
-* **[urlParse](#urlParse)** ([code](lib/url.js#L94) | [tests](test/url.js#L45))
-* **[stripQuerystring](#stripQuerystring)** ([code](lib/url.js#L106) | [tests](test/url.js#L24))
-* **[stripProtocol](#stripProtocol)** ([code](lib/url.js#L126) | [no tests])
+* **[encodeURI](#encodeURI)** ([code](lib/url.js#L20) | [tests](test/url.js#L38))
+* **[escape](#escape)** ([code](lib/url.js#L34) | [tests](test/url.js#L50))
+* **[decodeURI](#decodeURI)** ([code](lib/url.js#L47) | [tests](test/url.js#L62))
+* **[url_encode](#url_encode)** ([code](lib/url.js#L57) | [no tests])
+* **[url_decode](#url_decode)** ([code](lib/url.js#L64) | [no tests])
+* **[urlResolve](#urlResolve)** ([code](lib/url.js#L76) | [tests](test/url.js#L8))
+* **[urlParse](#urlParse)** ([code](lib/url.js#L89) | [tests](test/url.js#L74))
+* **[stripQuerystring](#stripQuerystring)** ([code](lib/url.js#L102) | [tests](test/url.js#L26))
+* **[stripProtocol](#stripProtocol)** ([code](lib/url.js#L121) | [no tests])
 
 ***
 
@@ -620,7 +590,7 @@ Returns the last item, or last `n` items of an array or string. Opposite of [fir
 **Example**
 
 ```handlebars
-<!-- var value = ['a', 'b', 'c', 'd', 'e'] -->
+<!-- const value = ['a', 'b', 'c', 'd', 'e'] -->
 
 {{last value}}
 <!-- results in: ['e'] -->
