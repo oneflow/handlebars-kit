@@ -78,7 +78,8 @@
   },
   "peerDependencies": {
     "handlebars": "4.x",
-    "moment": "2.x"
+    "moment": "2.x",
+    "moment-timezone": "0.5.x"
   },
   "devDependencies": {
     "docdash": "^1.1.0",
@@ -88,6 +89,7 @@
     "jsdoc": "3.6.7",
     "mockdate": "2.0.2",
     "moment": "2.24.0",
+    "moment-timezone": "^0.5.34",
     "semantic-release": "18.0.0"
   },
   "keywords": [
