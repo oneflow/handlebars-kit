@@ -75,10 +75,6 @@ describe('date', function() {
       const fn = hbs.compile("{{formatDate date 'dddd'}}");
       assert.equal(fn({ date: new Date('2017-01-18T10:54:00.000Z') }), 'Wednesday');
     });
-    it('returns a date in specified timezone if timezone supplied', () => {
-      const fn = hbs.compile("{{formatDate date 'dddd' 'America/Edmonton'}}");
-      assert.equal(fn({ date: new Date('2017-01-19T05:00:00.000Z') }), 'Wednesday');
-    });
   });
 
   describe('niceDate', () => {
