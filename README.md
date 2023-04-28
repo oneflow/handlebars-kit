@@ -1,4 +1,4 @@
-# THIS REPO HAS BEEN MIGRATED TO GHE AND IT IS VIRTUALLY LOCKED. PLEASE, USE https://github.azc.ext.hp.com/workflow-solutions/security-monitor-action
+# THIS REPO HAS BEEN MIGRATED TO GHE AND IT IS VIRTUALLY LOCKED. PLEASE, USE https://github.azc.ext.hp.com/workflow-solutions/handlebars-kit
 
 # Handlebars Kit
 
